@@ -4,7 +4,7 @@ I have Created this repository which will be updated as to quickly make new Kali
 
 ## How to Setup?
 
-1 . git clone https://github.com/tushar2481/new-setup
+1 . git clone https://github.com/tushar2481/new-setup.git
 
 2 . go to new-setup and run install.sh without sudo permission (will ask for password whenever needed to install tools)
 
