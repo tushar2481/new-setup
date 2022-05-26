@@ -17,3 +17,14 @@ I have Created this repository which will be updated as to quickly make new Kali
 6 . Setup Extentions in Burp & Download jython file from Drive tusharmotka24
 
 #### Note : With new tools this repository will be up-to-date.
+------------------------------------------------------------------------------------------------------------
+
+Some New Files added for Basic Recon...
+usage : setup target named folder in $RECON directory having file **wildcards**, __in-scope__ file
+1 => ./subdomain-finder.sh target
+2 => ./prober.sh target
+3 => ./ip_collector.sh target
+      Do Nmap scan manually (Bandwidth consuming...)
+4 => ./gather-urls.sh target
+5 => ./rustscanner.sh target
+6 => ./status-collector.sh target
