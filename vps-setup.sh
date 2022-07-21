@@ -20,6 +20,8 @@ sudo apt --purge remove python3-pycurl
 sudo pip3 install pycurl wfuzz
 
 # Golang tools
+go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
+sudo mv ~/go/bin/subfinder /usr/bin/subfinder
 go install github.com/tomnomnom/assetfinder@latest
 sudo mv ~/go/bin/assetfinder /usr/bin/assetfinder
 go install github.com/lc/gau/v2/cmd/gau@latest
