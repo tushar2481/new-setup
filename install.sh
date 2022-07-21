@@ -1,9 +1,8 @@
 #!/bin/bash
 
-#apt pre-build
+
 
 sudo apt update
-sudo apt upgrade
 sudo echo "deb http://http.kali.org/kali kali-last-snapshot main contrib non-free" | sudo tee /etc/apt/sources.list
 cp ~/.zshrc ~/.zshrc.bak
 sudo apt install -y golang
@@ -89,28 +88,27 @@ sudo mv ~/go/bin/subzy /usr/bin/subzy
 mkdir $HOME/tools
 echo "export TOOLS=$HOME/tools" >> ~/.zshrc
 cd $TOOLS
-git clone https://github.com/rbsec/dnscan.git
-git clone https://github.com/s0md3v/Corsy.git
-git clone https://github.com/nahamsec/lazys3.git
-git clone https://github.com/rbsec/dnscan.git
-git clone https://github.com/codingo/DNSCewl.git
-git clone https://github.com/alone-breecher/bug_hunting.git
-git clone https://github.com/projectdiscovery/nuclei-templates.git
-git clone https://www.github.com/devanshbatham/ParamSpider
-git clone https://github.com/devanshbatham/OpenRedireX
+git clone https://github.com/rbsec/dnscan.git /root/tools/dnscan
+git clone https://github.com/s0md3v/Corsy.git /root/tools/Corsy
+git clone https://github.com/nahamsec/lazys3.git /root/tools/lazys3
+git clone https://github.com/codingo/DNSCewl.git /root/tools/DNSCewl
+git clone https://github.com/alone-breecher/bug_hunting.git /root/tools/bug_hunting
+git clone https://github.com/projectdiscovery/nuclei-templates.git /root/nuclei-templates
+git clone https://www.github.com/devanshbatham/ParamSpider /root/tools/ParamSpider
+git clone https://github.com/devanshbatham/OpenRedireX /root/tools/OpenRedireX
 # python3 openredirex.py -u “https://www.geeksforgeeks.org/computer-science-projects/?ref=FUZZ” -p payloads.txt –keyword FUZZ
-git clone https://github.com/ProjectAnte/dnsgen
-git clone https://github.com/findomain/findomain.git
-git clone https://github.com/OWASP/Amass.git
-git clone https://github.com/nsonaniya2010/SubDomainizer.git
-git clone https://github.com/r00tkie/grep-pattern.git
-git clone https://github.com/maurosoria/dirsearch.git
-git clone https://github.com/tillson/git-hound.git
-git clone https://github.com/lobuhi/byp4xx.git
-git clone https://github.com/EnableSecurity/wafw00f.git
-git clone https://github.com/m0rtem/CloudFail.git
-git clone https://github.com/jaypatel131/Reconjet.git
-firefox https://github.com/michenriksen/aquatone
-firefox https://github.com/stevenvachon/broken-link-checker
+git clone https://github.com/ProjectAnte/dnsgen /root/tools/dnsgen
+git clone https://github.com/findomain/findomain.git /root/tools/findomain
+git clone https://github.com/OWASP/Amass.git /root/tools/Amass
+git clone https://github.com/nsonaniya2010/SubDomainizer.git /root/tools/SubDomainizer
+git clone https://github.com/r00tkie/grep-pattern.git /root/tools/grep-pattern
+git clone https://github.com/maurosoria/dirsearch.git /root/tools/dirsearch
+git clone https://github.com/tillson/git-hound.git /root/tools/git-hound
+git clone https://github.com/lobuhi/byp4xx.git /root/tools/byp4xx
+git clone https://github.com/EnableSecurity/wafw00f.git /root/tools/wafw00f
+git clone https://github.com/m0rtem/CloudFail.git /root/tools/CloudFail
+git clone https://github.com/jaypatel131/Reconjet.git /root/tools/Reconjet
+firefox https://github.com/michenriksen/aquatone /root/tools/aquatone
+firefox https://github.com/stevenvachon/broken-link-checker /root/tools/broken-link-checker
 #open ~/.config/haktools/haktrails-config.yml
 echo "please go for documentation of haktrails because u have to add api key for this"
