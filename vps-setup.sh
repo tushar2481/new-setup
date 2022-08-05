@@ -5,6 +5,7 @@ echo '[+] Welcome to VPS setup'
 sudo apt update
 sudo apt install git -y
 sudo apt install golang -y
+mkdir $HOME/go $HOME/go/bin
 cp /root/.bashrc /root/.bashrc.bak
 echo "export GOPATH=$HOME/go" >> ~/.bashrc
 echo "export PATH=$PATH:$GOROOT/bin:$GOPATH/bin" >> ~/.bashrc
