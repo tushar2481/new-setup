@@ -108,7 +108,11 @@ git clone https://github.com/lobuhi/byp4xx.git /root/tools/byp4xx
 git clone https://github.com/EnableSecurity/wafw00f.git /root/tools/wafw00f
 git clone https://github.com/m0rtem/CloudFail.git /root/tools/CloudFail
 git clone https://github.com/jaypatel131/Reconjet.git /root/tools/Reconjet
-firefox https://github.com/michenriksen/aquatone /root/tools/aquatone
-firefox https://github.com/stevenvachon/broken-link-checker /root/tools/broken-link-checker
+git clone https://github.com/1ndianl33t/Gf-Patterns /root/tools/Gf-Patterns
+mkdir ~/.gf
+mv ~/tools/Gf-Patterns/*.json ~/.gf/
+git clone https://github.com/tomnomnom/gf.git /root/tools/gf
+mv ~/tools/gf/examples/*.json ~/.gf
+rm -r ~/tools/Gf-Patterns ~/tools/gf
 #open ~/.config/haktools/haktrails-config.yml
 echo "please go for documentation of haktrails because u have to add api key for this"
