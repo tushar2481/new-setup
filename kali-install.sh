@@ -79,9 +79,9 @@ go install github.com/tomnomnom/anew@latest
 sudo mv ~/go/bin/anew /usr/bin/anew
 go install -v github.com/projectdiscovery/httpx/cmd/httpx@latest
 sudo mv ~/go/bin/httpx /usr/bin/httpx
-go install -u github.com/tomnomnom/gf@latest
+go install github.com/tomnomnom/gf@latest
 sudo mv ~/go/bin/gf /usr/bin/gf
-go install -v github.com/lukasikic/subzy@latest
+go install -v github.com/LukaSikic/subzy@latest
 sudo mv ~/go/bin/subzy /usr/bin/subzy
 
 #folder
