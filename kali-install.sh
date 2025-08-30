@@ -1,118 +1,154 @@
 #!/bin/bash
 
+echo "Starting Enhanced Bug Bounty Tools Installation..."
 
+# Update system
+apt update && apt upgrade -y
 
-sudo apt update
-sudo echo "deb http://http.kali.org/kali kali-last-snapshot main contrib non-free" | sudo tee /etc/apt/sources.list
-cp ~/.zshrc ~/.zshrc.bak
-sudo apt install -y golang
-echo "export GOPATH=$HOME/go" >> ~/.zshrc
-echo "export PATH=$PATH:$GOROOT/bin:$GOPATH/bin" >> ~/.zshrc
-mkdir $HOME/recon
-echo "export RECON=$HOME/recon"  >> ~/.zshrc
-sudo apt install -y git
-sudo apt install -y jq
-sudo apt install -y whois
-sudo apt install -y dnsrecon
-sudo apt install -y subfinder
-sudo apt install -y sublist3r
-sudo apt install -y ffuf
-sudo apt install -y gobuster
-sudo apt install -y nikto
-sudo apt install -y whatweb
-sudo apt install -y eyewitness
-sudo apt install -y arjun
-sudo apt install -y feroxbuster
-sudo apt install -y cargo
-sudo apt install -y libpcap-dev
-sudo apt install -y python3-pip
-sudo apt install -y libcurl4-openssl-dev libssl-dev
-sudo apt --purge remove python3-pycurl
-sudo apt install -y lolcat
-sudo pip3 install pycurl wfuzz
+# Install essential packages
+apt install -y curl wget git python3 python3-pip golang-go nodejs npm build-essential ruby-dev
 
-#Go
-go install github.com/tomnomnom/assetfinder@latest
-sudo mv ~/go/bin/assetfinder /usr/bin/assetfinder
-go install -v github.com/hakluke/haktrails@latest 
-sudo mv ~/go/bin/haktrails /usr/bin/haktrails
-go install github.com/hakluke/hakrawler@latest
-sudo mv ~/go/bin/hakrawler /usr/bin/hakrawler
-go install github.com/lc/gau/v2/cmd/gau@latest
-sudo mv ~/go/bin/gau /usr/bin/gau
-sudo apt install dnsenum
-go install github.com/tomnomnom/httprobe@latest
-sudo mv ~/go/bin/httprobe /usr/bin/httprobe
-go install github.com/tomnomnom/waybackurls@latest
-sudo mv ~/go/bin/waybackurls /usr/bin/waybackurls
-go install github.com/dwisiswant0/cf-check@latest
-sudo mv ~/go/bin/cf-check /usr/bin/cf-check
-go install github.com/yghonem14/cngo@latest
-sudo mv ~/go/bin/cngo /usr/bin/cngo
-go install github.com/KathanP19/Gxss@latest
-sudo mv ~/go/bin/Gxss /usr/bin/Gxss
-go install github.com/m4dm0e/dirdar@latest
-sudo mv ~/go/bin/dirdar /usr/bin/dirdar
-go install -v github.com/projectdiscovery/dnsx/cmd/dnsx@latest
-sudo mv ~/go/bin/dnsx /usr/bin/dnsx
-go install github.com/tomnomnom/fff@latest
-sudo mv ~/go/bin/fff /usr/bin/fff
-go install github.com/jaeles-project/gospider@latest
-sudo mv ~/go/bin/gospider /usr/bin/gospider
-go install github.com/gwen001/github-endpoints@latest
-sudo mv	~/go/bin/github-endpoints /usr/bin/github-endpoints
-go install github.com/sensepost/gowitness@latest
-sudo mv	~/go/bin/gowitness /usr/bin/gowitness
-go install github.com/projectdiscovery/naabu/v2/cmd/naabu@latest
-sudo mv	~/go/bin/naabu /usr/bin/naabu
-go install github.com/projectdiscovery/nuclei/v2/cmd/nuclei@latest
-sudo mv	~/go/bin/nuclei /usr/bin/nuclei
-go install github.com/d3mondev/puredns/v2@latest
-sudo mv	~/go/bin/puredns /usr/bin/puredns
-go install github.com/projectdiscovery/shuffledns/cmd/shuffledns@latest
-sudo mv	~/go/bin/shuffledns /usr/bin/shuffledns
-go install github.com/lc/subjs@latest
-sudo mv	~/go/bin/subjs /usr/bin/subjs
-go install github.com/gwen001/github-subdomains
-sudo mv	~/go/bin/github-subdomains /usr/bin/github-subdomains
-go install github.com/tomnomnom/anew@latest
-sudo mv ~/go/bin/anew /usr/bin/anew
+# Create tools directory
+mkdir -p ~/tools ~/wordlists
+cd ~/tools
+
+# Install Go tools from ProjectDiscovery
+echo "Installing ProjectDiscovery tools..."
+go install -v github.com/projectdiscovery/subfinder/v2/cmd/subfinder@latest
 go install -v github.com/projectdiscovery/httpx/cmd/httpx@latest
-sudo mv ~/go/bin/httpx /usr/bin/httpx
-go install github.com/tomnomnom/gf@latest
-sudo mv ~/go/bin/gf /usr/bin/gf
-go install -v github.com/LukaSikic/subzy@latest
-sudo mv ~/go/bin/subzy /usr/bin/subzy
+go install -v github.com/projectdiscovery/nuclei/v2/cmd/nuclei@latest
+go install -v github.com/projectdiscovery/naabu/v2/cmd/naabu@latest
+go install -v github.com/projectdiscovery/katana/cmd/katana@latest
+go install -v github.com/projectdiscovery/chaos-client/cmd/chaos@latest
+go install -v github.com/projectdiscovery/dnsx/cmd/dnsx@latest
+go install -v github.com/projectdiscovery/notify/cmd/notify@latest
+go install -v github.com/projectdiscovery/interactsh/cmd/interactsh-client@latest
+go install -v github.com/projectdiscovery/proxify/cmd/proxify@latest
+go install -v github.com/projectdiscovery/uncover/cmd/uncover@latest
 
-#folder
-mkdir $HOME/tools
-echo "export TOOLS=$HOME/tools" >> ~/.zshrc
-cd $TOOLS
-git clone https://github.com/rbsec/dnscan.git /root/tools/dnscan
-git clone https://github.com/s0md3v/Corsy.git /root/tools/Corsy
-git clone https://github.com/nahamsec/lazys3.git /root/tools/lazys3
-git clone https://github.com/codingo/DNSCewl.git /root/tools/DNSCewl
-git clone https://github.com/alone-breecher/bug_hunting.git /root/tools/bug_hunting
-git clone https://github.com/projectdiscovery/nuclei-templates.git /root/nuclei-templates
-git clone https://www.github.com/devanshbatham/ParamSpider /root/tools/ParamSpider
-git clone https://github.com/devanshbatham/OpenRedireX /root/tools/OpenRedireX
-# python3 openredirex.py -u “https://www.geeksforgeeks.org/computer-science-projects/?ref=FUZZ” -p payloads.txt –keyword FUZZ
-git clone https://github.com/ProjectAnte/dnsgen /root/tools/dnsgen
-git clone https://github.com/findomain/findomain.git /root/tools/findomain
-git clone https://github.com/OWASP/Amass.git /root/tools/Amass
-git clone https://github.com/nsonaniya2010/SubDomainizer.git /root/tools/SubDomainizer
-git clone https://github.com/r00tkie/grep-pattern.git /root/tools/grep-pattern
-git clone https://github.com/maurosoria/dirsearch.git /root/tools/dirsearch
-git clone https://github.com/tillson/git-hound.git /root/tools/git-hound
-git clone https://github.com/lobuhi/byp4xx.git /root/tools/byp4xx
-git clone https://github.com/EnableSecurity/wafw00f.git /root/tools/wafw00f
-git clone https://github.com/m0rtem/CloudFail.git /root/tools/CloudFail
-git clone https://github.com/jaypatel131/Reconjet.git /root/tools/Reconjet
-git clone https://github.com/1ndianl33t/Gf-Patterns /root/tools/Gf-Patterns
-mkdir ~/.gf
-mv ~/tools/Gf-Patterns/*.json ~/.gf/
-git clone https://github.com/tomnomnom/gf.git /root/tools/gf
-mv ~/tools/gf/examples/*.json ~/.gf
-rm -r ~/tools/Gf-Patterns ~/tools/gf
-#open ~/.config/haktools/haktrails-config.yml
-echo "please go for documentation of haktrails because u have to add api key for this"
+# Install other popular Go tools
+echo "Installing other Go tools..."
+go install -v github.com/tomnomnom/waybackurls@latest
+go install -v github.com/tomnomnom/assetfinder@latest
+go install -v github.com/tomnomnom/httprobe@latest
+go install -v github.com/tomnomnom/unfurl@latest
+go install -v github.com/tomnomnom/gf@latest
+go install -v github.com/tomnomnom/anew@latest
+go install -v github.com/tomnomnom/meg@latest
+go install -v github.com/lc/gau/v2/cmd/gau@latest
+go install -v github.com/hakluke/hakrawler@latest
+go install -v github.com/ffuf/ffuf@latest
+go install -v github.com/OJ/gobuster/v3@latest
+go install -v github.com/epi052/feroxbuster@latest
+go install -v github.com/jaeles-project/gospider@latest
+go install -v github.com/dwisiswant0/crlfuzz/cmd/crlfuzz@latest
+go install -v github.com/hahwul/dalfox/v2@latest
+go install -v github.com/projectdiscovery/alterx/cmd/alterx@latest
+go install -v github.com/projectdiscovery/shuffledns/cmd/shuffledns@latest
+go install -v github.com/projectdiscovery/cloudlist/cmd/cloudlist@latest
+
+# Install Python tools
+echo "Installing Python tools..."
+pip3 install dirsearch sqlmap arjun paramspider linkfinder uro pycryptodome requests beautifulsoup4
+
+# Install Node.js tools
+echo "Installing Node.js tools..."
+npm install -g linkfinder js-beautify retire
+
+# Install Ruby tools
+echo "Installing Ruby tools..."
+gem install wpscan
+
+# Install additional system tools
+echo "Installing additional tools..."
+apt install -y nmap masscan amass dirb nikto whatweb wfuzz hydra john hashcat aircrack-ng jq
+
+# Clone useful repositories
+echo "Cloning useful repositories..."
+git clone https://github.com/danielmiessler/SecLists.git
+git clone https://github.com/swisskyrepo/PayloadsAllTheThings.git
+git clone https://github.com/tomnomnom/gf.git && mkdir -p ~/.gf && cp gf/examples/*.json ~/.gf/
+
+# Download famous wordlists
+echo "Downloading famous wordlists..."
+cd ~/wordlists
+
+# Assetnote wordlists
+wget https://wordlists-cdn.assetnote.io/data/manual/2m-subdomains.txt
+wget https://wordlists-cdn.assetnote.io/data/manual/best-dns-wordlist.txt
+
+# Jhaddix all.txt
+wget https://gist.githubusercontent.com/jhaddix/86a06c5dc309d08580a018c66354a056/raw/96f4e51d96b2203f19f6381c8c545b278eaa0837/all.txt
+
+# OneListForAll
+git clone https://github.com/six2dez/OneListForAll.git
+
+# Seclists backup (if main clone fails)
+if [ ! -d "../tools/SecLists" ]; then
+    git clone https://github.com/danielmiessler/SecLists.git ../tools/SecLists
+fi
+
+# Download additional useful wordlists
+wget https://raw.githubusercontent.com/Bo0oM/fuzz.txt/master/fuzz.txt
+wget https://raw.githubusercontent.com/danielmiessler/RobotsDisallowed/master/top1000.txt
+
+cd ~/tools
+
+# Install LinkFinder (Python version)
+git clone https://github.com/GerbenJavado/LinkFinder.git
+cd LinkFinder && pip3 install -r requirements.txt && cd ..
+
+# Install additional useful tools
+git clone https://github.com/maurosoria/dirsearch.git
+git clone https://github.com/aboul3la/Sublist3r.git
+cd Sublist3r && pip3 install -r requirements.txt && cd ..
+
+# Update nuclei templates
+~/go/bin/nuclei -update-templates
+
+# Add Go bin to PATH if not already there
+if ! grep -q "export PATH=\$PATH:~/go/bin" ~/.bashrc; then
+    echo 'export PATH=$PATH:~/go/bin' >> ~/.bashrc
+fi
+
+# Create useful aliases
+cat >> ~/.bashrc << 'EOF'
+
+# Bug Bounty Aliases
+alias ll='ls -la'
+alias recon='subfinder -d $1 | httpx -silent | tee subdomains.txt'
+alias fuzz='ffuf -w ~/wordlists/best-dns-wordlist.txt -u https://$1/FUZZ'
+alias nucleiscan='nuclei -l subdomains.txt -t ~/nuclei-templates/'
+EOF
+
+echo "Installation completed! Please run 'source ~/.bashrc' to update PATH."
+echo ""
+echo "=== INSTALLED TOOLS ==="
+echo "Go Tools:"
+echo "- ProjectDiscovery: subfinder, httpx, nuclei, naabu, katana, chaos, dnsx, notify, interactsh-client, proxify, uncover, alterx, shuffledns, cloudlist"
+echo "- TomNomNom: waybackurls, assetfinder, httprobe, unfurl, gf, anew, meg"
+echo "- Others: gau, hakrawler, ffuf, gobuster, feroxbuster, gospider, crlfuzz, dalfox"
+echo ""
+echo "Python Tools:"
+echo "- dirsearch, sqlmap, arjun, paramspider, linkfinder, uro"
+echo "- LinkFinder (repo), Sublist3r"
+echo ""
+echo "Node.js Tools:"
+echo "- linkfinder, js-beautify, retire"
+echo ""
+echo "Ruby Tools:"
+echo "- wpscan"
+echo ""
+echo "System Tools:"
+echo "- nmap, masscan, amass, dirb, nikto, whatweb, wfuzz, hydra, john, hashcat"
+echo ""
+echo "Wordlists:"
+echo "- SecLists, PayloadsAllTheThings, OneListForAll"
+echo "- Assetnote 2m-subdomains.txt, best-dns-wordlist.txt"
+echo "- Jhaddix all.txt, fuzz.txt, robots top1000.txt"
+echo ""
+echo "Locations:"
+echo "- Go tools: ~/go/bin/"
+echo "- Python tools: System-wide"
+echo "- Repositories: ~/tools/"
+echo "- Wordlists: ~/wordlists/"
